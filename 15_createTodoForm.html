@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+>
+<body>
+<th:block layout:fragment="content">
+    <form
+            th:action="@{/todos/new}"
+            method="post"
+            th:object="${todoForm}"
+    >
+        <label th:for="title">할 일</label>
+        <input type="text" th:field="*{title}">
+        <p
+                th:if="${#fields.hasErrors('title')}"
+                th:errors="*{title}"
+        >
+            Incorrect date
+        </p>
+        <input type="submit" value="추가">
+    </form>
+</th:block>
+</body>
+</html>
